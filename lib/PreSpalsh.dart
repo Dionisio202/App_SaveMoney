@@ -1,4 +1,7 @@
+import 'package:app/CustomImage.dart';
+import 'package:app/LineAnimation.dart';
 import 'package:flutter/material.dart';
+import 'package:app/CustomText.dart';
 
 class PreSplash extends StatefulWidget {
   @override
@@ -7,52 +10,42 @@ class PreSplash extends StatefulWidget {
 
 class _PreSplashScreenState extends State<PreSplash>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: Duration(milliseconds: 600),
-      vsync: this,
-    );
-    _animation = Tween<double>(begin: 0, end: 0.7).animate(_controller);
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFE7E7D9),
       body: Center(
-        child: AnimatedBuilder(
-          animation: _animation,
-          builder: (context, child) {
-            return Container(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    height: 4,
-                    width: _animation.value * MediaQuery.of(context).size.width,
-                    color: Color.fromARGB(255, 110, 109, 33),
-                  ),
-                ],
+        child: Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomText(
+                  text: 'Save Money',
+                  color: Colors.black,
+                  fontSize: 30.0,
+                  fontFamily: 'Arial',
+                ),
+                SizedBox(height: 120.0),
+                CustomImage(
+                  imagePath: 'pictures/wallet.png',
+                  width: 250.0,
+                  height: 200.0,
+                ),
+                LineAnimation(),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: CustomText(
+                text: 'DionisioDev',
+                color: Colors.black,
+                fontSize: 14.0,
+                fontFamily: 'Arial',
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );
