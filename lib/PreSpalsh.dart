@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:app/CustomImage.dart';
 import 'package:app/LineAnimation.dart';
+import 'package:app/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:app/CustomText.dart';
 
@@ -10,6 +13,19 @@ class PreSplash extends StatefulWidget {
 
 class _PreSplashScreenState extends State<PreSplash>
     with SingleTickerProviderStateMixin {
+  final Completer<bool> _animationCompleted = Completer<bool>();
+  @override
+  void initState() {
+    super.initState();
+    _animationCompleted.future.then((value) {
+      if (value) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => Login(),
+        ));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +49,7 @@ class _PreSplashScreenState extends State<PreSplash>
                   width: 250.0,
                   height: 200.0,
                 ),
-                LineAnimation(),
+                LineAnimation(animationCompleted: _animationCompleted),
               ],
             ),
             Padding(

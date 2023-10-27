@@ -1,6 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class LineAnimation extends StatefulWidget {
+  final Completer<bool> animationCompleted;
+
+  LineAnimation({required this.animationCompleted});
+
   @override
   _LineAnimationState createState() => _LineAnimationState();
 }
@@ -18,6 +24,13 @@ class _LineAnimationState extends State<LineAnimation>
       vsync: this,
     );
     _animation = Tween<double>(begin: 0, end: 0.7).animate(_controller);
+
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        widget.animationCompleted.complete(true);
+      }
+    });
+
     _controller.forward();
   }
 
