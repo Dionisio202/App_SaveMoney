@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextFieldPassword extends StatefulWidget {
   final String labelText;
   final double fontSize;
   final double textFieldWidth;
   final IconData icon;
   final ValueChanged<String>? onChanged;
 
-  CustomTextField({
+  CustomTextFieldPassword({
     required this.labelText,
     required this.fontSize,
     required this.textFieldWidth,
@@ -19,7 +19,7 @@ class CustomTextField extends StatefulWidget {
   _CustomTextFieldState createState() => _CustomTextFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CustomTextFieldState extends State<CustomTextFieldPassword> {
   bool _obscureText = true;
 
   @override
