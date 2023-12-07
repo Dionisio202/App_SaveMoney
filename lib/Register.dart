@@ -1,3 +1,4 @@
+import 'package:app/CustomImage.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -8,12 +9,20 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFFF9F9F9),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[]),
+            children: [
+              CustomImage(
+                imagePath: 'pictures/registern.png',
+                width: 170,
+                height: 170,
+              ),
+              // Otros widgets que desees agregar en la columna
+            ],
+          ),
         ),
       ),
     );
